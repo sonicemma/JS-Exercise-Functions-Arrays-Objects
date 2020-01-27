@@ -125,7 +125,7 @@ var inventory = [
 **/
 function get3rdCar(inventory) {
   const the3rd = inventory.find((item, index) => {
-    return index === 0 // we use 2 because index is zero-based.
+    return index === 2 // we use 2 because index is zero-based.
   })
   return `The car is a ${the3rd.car_make} ${the3rd.car_model}`
 }
@@ -151,7 +151,7 @@ function getCarInfoByIndex(inventory, index) {
     const findCar = inventory.find((item, index) => {
       return index === 0;
     });
-    return `This is a ${findCar.car_make} ${findCar.car_model}`
+    return `This is a ${findCar.car_make} ${findCar.car_model}`;
 }
 
 /**
@@ -165,8 +165,11 @@ function getCarInfoByIndex(inventory, index) {
  * For example, if getLastCarInfo is invoked passing the inventory inside /data/inventory.js,
  * it will return `This is a Lincoln Town Car`.
 */
-function getLastCarInfo(/* code here */) {
-  /* code here */
+function getLastCarInfo(inventory) {
+  const getLast = inventory.find((item, index) => {
+    return index === 49;
+  });
+  return `This is a ${getLast.car_make} ${getLast.car_model}`;
 }
 
 /**
@@ -181,8 +184,12 @@ function getLastCarInfo(/* code here */) {
  * For example, if getCarInfoById is invoked with the inventory and the number 1,
  * it will return `This is a Lincoln Navigator`.
 */
-function getCarInfoById(/* code here */) {
-  /* code here */
+function getCarInfoById(inventory, id) {
+  for (let i=0; i < inventory.length; i++){
+    if (inventory[i].id === id) {
+      return `This is a ${inventory[i].car_make} ${inventory[i].car_model}.`
+    };
+  };
 }
 
 /**
@@ -193,10 +200,14 @@ function getCarInfoById(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
 */
-function sortCarInventory(/* code here */) {
-  /* code here */
+function sortCarInventory(inventory) {
+let sortedCar = inventory.sort( (a, b) => {
+    if(a.car_model > b.car_model) return 1;
+    else if(b.car_model > a.car_model) return -1;
+    else return 0;
+  });
+  return sortedCar;
 }
-
 /**
  * ### Challenge `getModelYears`
  * 
@@ -206,8 +217,12 @@ function sortCarInventory(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
-function getModelYears(/* code here */) {
-  /* code here */
+function getModelYears(inventory) {
+  let sortedYears = [];
+  for(let i=0; i < inventory.length; i++){
+    sortedYears.push (inventory[i].car_year);
+  };
+  return sortedYears;
 }
 
 /**
@@ -222,8 +237,14 @@ function getModelYears(/* code here */) {
  * with a `car_year` which is at most the given desired max year,
  * in the same order as they appear in the original inventory.
 */
-function getOlderCars(/* code here */) {
-  /* code here */
+function getOlderCars(inventory, num) {
+  let maxYear = [];
+  for(let i=0; i < inventory.length; i++){
+    if(inventory[i].car_year <= num) {
+      maxYear.push (inventory[i]);
+    };
+  };
+  return maxYear;
 }
 
 /**
@@ -237,8 +258,16 @@ function getOlderCars(/* code here */) {
  * made by either `Audi` or `Mercedes-Benz` or `Volkswagen` or `BMW`,
  * in the same order as they appear in the original inventory.
 */
-function getGermanCars(/* code here */) {
-  /* code here */
+function getGermanCars(inventory) {
+  let dasArray = [];
+  for(let i = 0; i < inventory.length; i++){
+    let yerman = ['Audi', 'Mercedes-Benz', 'Volkswagen', 'BMW'];
+    let cars = inventory[i].car_make;
+    if(yerman.includes(cars)) {
+      dasArray.push(inventory[i]);
+    }
+  }
+  return dasArray;
 }
 
 /**
@@ -251,6 +280,7 @@ function getGermanCars(/* code here */) {
  *   return a + b
  * }
  * 
+ * 
  * const addFive = function(num) {
 *    return num + 5
  * }
@@ -259,7 +289,7 @@ function getGermanCars(/* code here */) {
  *   return num * 2
  * }
 */
-const sum = null; // code here!
+const sum = (a, b) => a + b; // code here!
 const addFive = null; // code here!
 const argTimesTwo = null; // code here!
 
