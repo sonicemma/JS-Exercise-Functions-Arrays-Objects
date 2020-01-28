@@ -163,11 +163,9 @@ function getCarInfoByIndex(inventory, index) {
  * it will return `This is a Lincoln Town Car`.
 */
 function getLastCarInfo(inventory) {
-  const getLast = inventory.find((item, index) => {
-    return index === 49;
-  });
-  return `This is a ${getLast.car_make} ${getLast.car_model}`;
-}
+    const lastCar = inventory[inventory.length -1];
+    return `This is a ${lastCar.car_make} ${lastCar.car_model}`;
+} 
 
 /**
  * ### Challenge `getCarInfoById`
