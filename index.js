@@ -309,7 +309,7 @@ const argTimesTwo = (a) => a * 2;
 function carMaker(num) {
   const car = {} 
   car.odometer = num;
-  car.drive = (distance) => { return car.odometer += distance};
+  car.drive = (distance) => car.odometer += distance;
   return car;
 }
 
